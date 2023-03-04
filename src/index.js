@@ -1,4 +1,8 @@
+// Functions
 import { fillCards } from "./module/fillCards";
+
+// Components
+import "./components/ModalWinner";
 
 const neighbors = {
   0: [0, 1, 3, 4],
@@ -17,22 +21,22 @@ const neighbors = {
 
   const randomPositions = [];
 
-  for (let i = 0; i < 10; i++) {
-    const randomNumber = Math.floor(Math.random() * 9);
-    randomPositions.push(randomNumber);
-  }
+  // for (let i = 0; i < 10; i++) {
+  //   const randomNumber = Math.floor(Math.random() * 9);
+  //   randomPositions.push(randomNumber);
+  // }
 
-  for (const position of randomPositions) {
-    rotateCards(neighbors[position]);
-  }
+  // for (const position of randomPositions) {
+  //   rotateCards(neighbors[position]);
+  // }
 
   const cards = document.querySelectorAll("flip-card");
 
   for (const card of cards) {
-    card.addEventListener("click", e => flipCard(e.target));
+    card.addEventListener("click", e => flipCard(e.target, cards));
   }
 
-  const flipCard = (card) => {
+  const flipCard = (card, cards) => {
     const cardPosition = card.classList[0];
     let winner = false;
 
@@ -54,7 +58,8 @@ const neighbors = {
     }
 
     if (winner) {
-      alert("Has ganado!!");
+      const modal = document.createElement("modal-winner");
+      document.body.appendChild(modal);
     }
   };
 })();

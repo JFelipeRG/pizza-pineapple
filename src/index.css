@@ -1,3 +1,5 @@
+@import url("./styles/game-difficulty.css");
+
 @font-face {
   font-family: "Climate Crisis";
   src: url("fonts/ClimateCrisis-Regular.ttf");
@@ -19,7 +21,17 @@ body,html {
   align-items: center;
 }
 
+modal-winner {
+  position: fixed;
+  background-color: #010101a5;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-content: center;
+}
+
 h1 {
+  padding: 20px;
   color: white;
   font-family: "Climate Crisis",fantasy;
   letter-spacing: 3px;
@@ -27,11 +39,23 @@ h1 {
 }
 
 .container {
-  width: auto;
-  height: auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  min-width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
   background: none;
-  padding: 40px;
+  padding: 10px;
+}
+
+footer {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+}
+
+footer a {
+  text-decoration: none;
+  color: white;
 }

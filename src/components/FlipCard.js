@@ -13,8 +13,8 @@ class FlipCard extends HTMLElement {
       .card {
         background-color: transparent;
         border-radius: 7px;
-        width: 7rem;
-        height: 10rem;
+        width: 100%;
+        height: 100%;
         perspective: 1000px;
       }
 
@@ -39,7 +39,7 @@ class FlipCard extends HTMLElement {
         position: absolute;
         width: 100%;
         height: 100%;
-        background-size: contain;
+        background-size: cover;
         border-radius: 7px;
         backface-visibility: hidden;
       }
