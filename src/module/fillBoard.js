@@ -24,7 +24,7 @@ const fillBoard = (event) => {
 
   fillCards(rowLenght[playerChoose]);
   fillNeighbors(rowLenght[playerChoose]);
-  // randomizer();
+  randomizer();
 };
 
 const randomizer = () => {
