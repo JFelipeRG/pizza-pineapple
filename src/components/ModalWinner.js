@@ -99,6 +99,7 @@ class ModalWinner extends HTMLElement {
 
   handleNewButtonClick() {
     const container = document.querySelector(".container");
+    container.innerHTML = "";
     const optionMenu = document.createElement("options-menu");
     const modal = document.querySelector("modal-winner");
     container.appendChild(optionMenu);
