@@ -175,6 +175,3 @@ const borderNeighbors = (position, index, rowLenght) => {
 
   return neighbors;
 };
-
-const result = getNeighbors(5, 3);
-console.log(result);

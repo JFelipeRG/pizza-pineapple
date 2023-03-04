@@ -35,8 +35,6 @@ const fillBoard = async (event) => {
   await fillCards(rowLenght[playerChoose]);
   await fillNeighbors(rowLenght[playerChoose]);
 
-  console.log(neighbors);
-
   const randomPositions = [];
 
   for (let i = 0; i < 10; i++) {
