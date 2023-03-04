@@ -13,7 +13,7 @@ class FlipCard extends HTMLElement {
       .card {
         background-color: transparent;
         border-radius: 7px;
-        width: 100%;
+        min-width: 100%;
         height: 100%;
         perspective: 1000px;
       }

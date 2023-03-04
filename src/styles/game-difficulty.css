@@ -19,6 +19,10 @@
         2px 2px #fff, -2px -2px #fff, 2px -2px #fff, -2px 2px #fff;
 }
 
+.game-difficulty > * {
+    pointer-events: none;
+}
+
 .easy {
     background-color: var(--easy-color);
     color: var(--easy-color);
