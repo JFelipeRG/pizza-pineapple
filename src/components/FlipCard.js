@@ -1,11 +1,18 @@
+import { neighbors } from "../module/fillBoard";
+import { rotateCards } from "../module/rotateCards";
+
+import "./ModalWinner";
+
 class FlipCard extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
+    this.buttonBoundListener = this.handleButtonClick.bind(this);
   }
 
   connectedCallback() {
     this.render();
+    this.addEventListener("click", this.buttonBoundListener);
   }
 
   static get styles() {
@@ -54,6 +61,35 @@ class FlipCard extends HTMLElement {
         transform: rotateY(180deg);
       }
     `;
+  }
+
+  handleButtonClick(event) {
+    const card = event.target;
+    const cards = document.querySelectorAll("flip-card");
+    const cardPosition = card.classList[0];
+    let winner = false;
+
+    rotateCards(neighbors[cardPosition]);
+
+    const flipPosition = [];
+
+    for (const card of cards) {
+      flipPosition.push(card.returnFlipPosition());
+    }
+
+    switch (flipPosition[0]) {
+      case "front":
+        winner = !flipPosition.includes("back");
+        break;
+      case "back":
+        winner = !flipPosition.includes("front");
+        break;
+    }
+
+    if (winner) {
+      const modal = document.createElement("modal-winner");
+      document.body.appendChild(modal);
+    }
   }
 
   rotateCard() {

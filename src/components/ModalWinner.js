@@ -1,3 +1,6 @@
+import { randomizer } from "../module/fillBoard";
+import "../components/OptionsMenu";
+
 class ModalWinner extends HTMLElement {
   constructor() {
     super();
@@ -6,6 +9,8 @@ class ModalWinner extends HTMLElement {
 
   connectedCallback() {
     this.render();
+    this.shadowRoot.querySelector(".replay").addEventListener("click", this.handleReplayButtonClick);
+    this.shadowRoot.querySelector(".new").addEventListener("click", this.handleNewButtonClick);
   }
 
   static get styles() {
@@ -43,12 +48,12 @@ class ModalWinner extends HTMLElement {
           justify-content: center;
           width: 100%;
           height: fit-content;
-          gap: 5rem;
+          gap: 10px;
         }
 
         .replay,
         .new {
-          width: 2.5rem;
+          width: 100%;
           aspect-ratio: 2/1;
           text-align: center;
           color: white;
@@ -58,7 +63,7 @@ class ModalWinner extends HTMLElement {
         }
 
         figure {
-          width: 2rem;
+          width: 2.5rem;
         }
 
         img {
@@ -67,7 +72,7 @@ class ModalWinner extends HTMLElement {
 
         span {
           text-align: center;
-          font-size: 0.75rem;
+          font-size: 0.6rem;
           text-shadow: 3px 3px 2px black;
         }
 
@@ -75,7 +80,7 @@ class ModalWinner extends HTMLElement {
         h2,
         .replay,
         .new {
-          animation: popItem 0.75s forwards;
+          animation: popItem 0.7s forwards;
         }
 
         @keyframes popItem{
@@ -84,6 +89,20 @@ class ModalWinner extends HTMLElement {
           }
         }
     `;
+  }
+
+  handleReplayButtonClick() {
+    randomizer();
+    const modal = document.querySelector("modal-winner");
+    modal.remove();
+  }
+
+  handleNewButtonClick() {
+    const container = document.querySelector(".container");
+    const optionMenu = document.createElement("options-menu");
+    const modal = document.querySelector("modal-winner");
+    container.appendChild(optionMenu);
+    modal.remove();
   }
 
   render() {
