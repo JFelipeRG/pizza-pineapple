@@ -72,7 +72,7 @@
             transform: scale(2)
           }
         }
-    `}handleReplayButtonClick(){p(),document.querySelector("modal-winner").remove()}handleNewButtonClick(){const e=document.querySelector(".container"),t=document.createElement("options-menu"),r=document.querySelector("modal-winner");e.appendChild(t),r.remove()}render(){this.shadowRoot.innerHTML=`
+    `}handleReplayButtonClick(){p(),document.querySelector("modal-winner").remove()}handleNewButtonClick(){const e=document.querySelector(".container");e.innerHTML="";const t=document.createElement("options-menu"),r=document.querySelector("modal-winner");e.appendChild(t),r.remove()}render(){this.shadowRoot.innerHTML=`
         <style>${n.styles}</style>
         <div class="modal">
             <div class="message">
