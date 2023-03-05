@@ -50,13 +50,20 @@ class FlipCard extends HTMLElement {
         backface-visibility: hidden;
       }
 
-      .front-face {
+      .front-face, .back-face {
+        box-sizing: border-box;
         width: 100%;
         background: url("img/pizza.webp");
+        background-size: contain;
+        border: 5px solid #edb544;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
       .back-face {
         background: url("img/pinneaple.webp");
+        border: 5px solid #e5d282;
         transform: rotateY(180deg);
       }
     `;
@@ -111,8 +118,10 @@ class FlipCard extends HTMLElement {
       <style>${FlipCard.styles}</style>
       <div class="card front">
         <div class="inner">
-          <div class="front-face"></div>
-          <div class="back-face"></div>
+          <div class="front-face">
+          </div>
+          <div class="back-face">
+          </div>
         </div>
       </div>
     `;
