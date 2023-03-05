@@ -1,4 +1,4 @@
-import { fillBoard } from "../module/fillBoard";
+import { fillBoard } from "../module/boardActions";
 
 class OptionsMenu extends HTMLElement {
   constructor() {

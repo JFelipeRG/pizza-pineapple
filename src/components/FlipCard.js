@@ -1,5 +1,4 @@
-import { neighbors } from "../module/fillBoard";
-import { rotateCards } from "../module/rotateCards";
+import { neighbors, rotateCards } from "../module/boardActions";
 
 import "./ModalWinner";
 
@@ -20,7 +19,7 @@ class FlipCard extends HTMLElement {
       .card {
         background-color: transparent;
         border-radius: 7px;
-        min-width: 100%;
+        width: 100%;
         height: 100%;
         perspective: 1000px;
       }
@@ -67,7 +66,7 @@ class FlipCard extends HTMLElement {
     const card = event.target;
     const cards = document.querySelectorAll("flip-card");
     const cardPosition = card.classList[0];
-    let winner = false;
+    let winner;
 
     rotateCards(neighbors[cardPosition]);
 

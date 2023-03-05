@@ -1,4 +1,4 @@
-import { randomizer } from "../module/fillBoard";
+import { randomizer } from "../module/boardActions";
 import "../components/OptionsMenu";
 
 class ModalWinner extends HTMLElement {

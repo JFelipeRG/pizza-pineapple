@@ -1,4 +1,14 @@
-export const getNeighbors = (position, rowLenght) => {
+export const getNeighbors = (rowLenght, totalCards) => {
+  const neighbors = {};
+
+  for (let i = 0; i < totalCards; i++) {
+    neighbors[i] = getNeighbor(i, rowLenght);
+  }
+
+  return neighbors;
+};
+
+const getNeighbor = (position, rowLenght) => {
   const borderPosition = isInBorder(position, rowLenght);
   const cornerPosition = isInCorner(position, rowLenght);
   let neighbors = [];
@@ -28,28 +38,22 @@ export const getNeighbors = (position, rowLenght) => {
 
 const isInBorder = (position, rowLenght) => {
   const result = {
-    validation: false,
+    validation: true,
     borderPosition: ""
   };
 
   const finalPosition = (rowLenght ** 2) - 1;
 
   if (position >= 0 && position <= (rowLenght - 1)) {
-    result.validation = true;
     result.borderPosition = "top";
   } else if (position >= (finalPosition - (rowLenght - 1)) && position <= finalPosition) {
-    result.validation = true;
     result.borderPosition = "bottom";
+  } else if (position % rowLenght === 0) {
+    result.borderPosition = "left";
+  } else if (position % rowLenght === rowLenght - 1) {
+    result.borderPosition = "right";
   } else {
-    for (let i = 1; i < (rowLenght - 1); i++) {
-      if ((0 + rowLenght * i) === position) {
-        result.validation = true;
-        result.borderPosition = "left";
-      } else if (((rowLenght - 1) + rowLenght * i) === position) {
-        result.validation = true;
-        result.borderPosition = "right";
-      }
-    }
+    result.validation = false;
   }
 
   return result;
@@ -57,7 +61,7 @@ const isInBorder = (position, rowLenght) => {
 
 const isInCorner = (position, rowLenght) => {
   const result = {
-    validation: false,
+    validation: true,
     borderPosition: ""
   };
 
@@ -65,21 +69,19 @@ const isInCorner = (position, rowLenght) => {
 
   switch (position) {
     case 0:
-      result.validation = true;
       result.borderPosition = "top-left";
       break;
     case rowLenght - 1:
-      result.validation = true;
       result.borderPosition = "top-right";
       break;
     case total - (rowLenght - 1):
-      result.validation = true;
       result.borderPosition = "bottom-left";
       break;
     case total:
-      result.validation = true;
       result.borderPosition = "bottom-right";
       break;
+    default:
+      result.validation = false;
   }
 
   return result;
