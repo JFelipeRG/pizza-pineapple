@@ -5,9 +5,8 @@ import { getNeighbors } from "./getNeighbors";
 let totalCards = 0;
 let neighbors = {};
 
-const fillBoard = async (event) => {
-  const element = event.target;
-  const playerChoose = element.classList[1];
+const fillBoard = async ({ target }) => {
+  const playerChoose = target.classList[1];
   const rowLenght = {
     easy: 3,
     medium: 4,

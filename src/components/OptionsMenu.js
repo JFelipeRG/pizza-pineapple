@@ -36,11 +36,17 @@ class OptionsMenu extends HTMLElement {
             align-items: center;
             border: 5px solid white;
             padding: 30px;
+            cursor: pointer;
             border-radius: 7px;
             font-weight: 800;
             font-size: 1.5rem;
             text-shadow: 3px 0 #fff, -3px 0 #fff, 0 3px #fff, 0 -3px #fff,
                 2px 2px #fff, -2px -2px #fff, 2px -2px #fff, -2px 2px #fff;
+        }
+
+        .game-difficulty:hover {
+          transform: scale(1.2);
+          transition: all 0.2s ease-in-out;
         }
 
         .game-difficulty > * {
