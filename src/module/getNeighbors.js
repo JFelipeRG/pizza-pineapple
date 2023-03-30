@@ -1,19 +1,11 @@
-export const getNeighbors = (rowLenght, totalCards) => {
-  const neighbors = {};
-
-  for (let i = 0; i < totalCards; i++) {
-    neighbors[i] = getNeighbor(i, rowLenght);
-  }
-
-  return neighbors;
-};
-
-const getNeighbor = (position, rowLenght) => {
-  const borderPosition = isInBorder(position, rowLenght);
-  const cornerPosition = isInCorner(position, rowLenght);
+export const getNeighbors = (position, rowLenght) => {
+  const totalCards = rowLenght ** 2 - 1;
+  const borderPosition = isInBorder(position, rowLenght, totalCards);
   let neighbors = [];
 
   if (borderPosition.validation) {
+    const cornerPosition = isInCorner(position, rowLenght, totalCards);
+
     if (cornerPosition.validation) {
       neighbors = cornerNeighbors(cornerPosition.borderPosition, position, rowLenght);
     } else {
@@ -36,13 +28,11 @@ const getNeighbor = (position, rowLenght) => {
   return neighbors;
 };
 
-const isInBorder = (position, rowLenght) => {
+const isInBorder = (position, rowLenght, finalPosition) => {
   const result = {
     validation: true,
     borderPosition: ""
   };
-
-  const finalPosition = (rowLenght ** 2) - 1;
 
   if (position >= 0 && position <= (rowLenght - 1)) {
     result.borderPosition = "top";
@@ -59,13 +49,11 @@ const isInBorder = (position, rowLenght) => {
   return result;
 };
 
-const isInCorner = (position, rowLenght) => {
+const isInCorner = (position, rowLenght, totalCards) => {
   const result = {
     validation: true,
     borderPosition: ""
   };
-
-  const total = rowLenght ** 2 - 1;
 
   switch (position) {
     case 0:
@@ -74,10 +62,10 @@ const isInCorner = (position, rowLenght) => {
     case rowLenght - 1:
       result.borderPosition = "top-right";
       break;
-    case total - (rowLenght - 1):
+    case totalCards - (rowLenght - 1):
       result.borderPosition = "bottom-left";
       break;
-    case total:
+    case totalCards:
       result.borderPosition = "bottom-right";
       break;
     default:

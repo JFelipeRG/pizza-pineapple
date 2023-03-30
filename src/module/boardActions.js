@@ -1,26 +1,14 @@
 import { fillCards } from "./fillCards";
 import { getNeighbors } from "./getNeighbors";
 
-// Global variables
-let totalCards = 0;
-let neighbors = {};
-
-const fillBoard = async ({ target }) => {
-  const playerChoose = target.classList[1];
-  const rowLenght = {
-    easy: 3,
-    medium: 4,
-    hard: 5
-  };
-  totalCards = rowLenght[playerChoose] ** 2;
-
-  fillCards(rowLenght[playerChoose]);
-  neighbors = getNeighbors(rowLenght[playerChoose], totalCards);
-  randomizer();
+const fillBoard = async (rowLength) => {
+  fillCards(rowLength);
+  randomizer(rowLength);
 };
 
-const randomizer = () => {
+const randomizer = (rowLength) => {
   const randomPositions = [];
+  const totalCards = rowLength ** 2;
 
   for (let i = 0; i < 10; i++) {
     const randomNumber = Math.floor(Math.random() * totalCards);
@@ -28,7 +16,8 @@ const randomizer = () => {
   }
 
   for (const position of randomPositions) {
-    rotateCards(neighbors[position]);
+    const neighbors = getNeighbors(position, rowLength);
+    rotateCards(neighbors);
   }
 };
 
@@ -40,4 +29,4 @@ const rotateCards = (arrayPositions) => {
   }
 };
 
-export { neighbors, randomizer, fillBoard, rotateCards };
+export { randomizer, fillBoard, rotateCards };

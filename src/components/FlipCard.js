@@ -1,4 +1,5 @@
-import { neighbors, rotateCards } from "../module/boardActions";
+import { rotateCards } from "../module/boardActions";
+import { getNeighbors } from "../module/getNeighbors";
 
 import "./ModalWinner";
 
@@ -53,7 +54,7 @@ class FlipCard extends HTMLElement {
       .front-face, .back-face {
         box-sizing: border-box;
         width: 100%;
-        background: url("img/pizza.webp");
+        background: url("../assets/img/pizza.webp");
         background-size: contain;
         border: 5px solid #edb544;
         display: flex;
@@ -62,40 +63,24 @@ class FlipCard extends HTMLElement {
       }
 
       .back-face {
-        background: url("img/pinneaple.webp");
+        background: url("../assets/img/pinneaple.webp");
         border: 5px solid #e5d282;
         transform: rotateY(180deg);
       }
     `;
   }
 
-  handleButtonClick(event) {
-    const card = event.target;
-    const cards = document.querySelectorAll("flip-card");
-    const cardPosition = card.classList[0];
-    let winner;
+  handleButtonClick({ target }) {
+    const position = target.classList[0];
+    const event = new CustomEvent("flip-cards", {
+      detail: {
+        cardPosition: position,
+      },
+      bubbles: true,
+      composed: true
+    });
 
-    rotateCards(neighbors[cardPosition]);
-
-    const flipPosition = [];
-
-    for (const card of cards) {
-      flipPosition.push(card.returnFlipPosition());
-    }
-
-    switch (flipPosition[0]) {
-      case "front":
-        winner = !flipPosition.includes("back");
-        break;
-      case "back":
-        winner = !flipPosition.includes("front");
-        break;
-    }
-
-    if (winner) {
-      const modal = document.createElement("modal-winner");
-      document.body.appendChild(modal);
-    }
+    target.dispatchEvent(event);
   }
 
   rotateCard() {

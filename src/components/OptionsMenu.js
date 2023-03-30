@@ -11,7 +11,7 @@ class OptionsMenu extends HTMLElement {
 
     const options = this.shadowRoot.querySelectorAll(".game-difficulty");
     for (const option of options) {
-      option.addEventListener("click", e => this.handButtonClick(e));
+      option.addEventListener("click", this.handButtonClick);
     }
   }
 
@@ -70,8 +70,16 @@ class OptionsMenu extends HTMLElement {
     `;
   }
 
-  handButtonClick(event) {
-    fillBoard(event);
+  handButtonClick({ target }) {
+    const option = target.classList[1];
+
+    const rowLength = {
+      easy: 3,
+      medium: 4,
+      hard: 5
+    };
+
+    fillBoard(rowLength[option]);
   }
 
   render() {
