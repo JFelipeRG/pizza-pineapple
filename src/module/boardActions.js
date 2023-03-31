@@ -1,32 +1,31 @@
-import { fillCards } from "./fillCards";
+import "../components/Board/PlayerBoard.js";
+
 import { getNeighbors } from "./getNeighbors";
 
 const fillBoard = async (rowLength) => {
-  fillCards(rowLength);
-  randomizer(rowLength);
+  const container = document.querySelector(".container");
+  container.innerHTML = "";
+
+  const board = document.createElement("player-board");
+  board.rowLength = rowLength;
+
+  container.appendChild(board);
 };
 
-const randomizer = (rowLength) => {
+const randomizer = () => {
   const randomPositions = [];
-  const totalCards = rowLength ** 2;
+  const board = document.querySelector("player-board");
 
   for (let i = 0; i < 10; i++) {
-    const randomNumber = Math.floor(Math.random() * totalCards);
-    randomPositions.push(randomNumber);
+    const x = Math.floor(Math.random() * board.rowLength);
+    const y = Math.floor(Math.random() * board.rowLength);
+    randomPositions.push(`${x}-${y}`);
   }
 
   for (const position of randomPositions) {
-    const neighbors = getNeighbors(position, rowLength);
-    rotateCards(neighbors);
+    const neighbors = getNeighbors(position, board.rowLength);
+    board.rotateCards(neighbors);
   }
 };
 
-const rotateCards = (arrayPositions) => {
-  const cards = document.querySelectorAll("flip-card");
-
-  for (const position of arrayPositions) {
-    cards[position].rotateCard();
-  }
-};
-
-export { randomizer, fillBoard, rotateCards };
+export { randomizer, fillBoard };
