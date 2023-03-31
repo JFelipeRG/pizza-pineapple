@@ -32,38 +32,34 @@ class ModalWinner extends HTMLElement {
 
         h1, h2 {
           max-width: 100%;
-          margin: 2rem;
           color: white;
           text-align: center;
-          font-size: 1.65rem;
+          font-size: 3rem;
           text-shadow: 5px 5px 5px black;
         }
 
         h2 {
-          font-size: 1rem;
+          font-size: 1.5rem;
         }
 
         .buttons-container {
           display: flex;
           justify-content: center;
-          width: 100%;
-          height: fit-content;
-          gap: 10px;
+          gap: 50px;
         }
 
         .replay,
         .new {
-          width: 100%;
-          aspect-ratio: 2/1;
           text-align: center;
           color: white;
           display: flex;
           flex-direction: column;
           align-items: center;
+          cursor: pointer;
         }
 
         figure {
-          width: 2.5rem;
+          width: 4rem;
         }
 
         img {
@@ -72,7 +68,7 @@ class ModalWinner extends HTMLElement {
 
         span {
           text-align: center;
-          font-size: 0.6rem;
+          font-size: 1rem;
           text-shadow: 3px 3px 2px black;
         }
 
@@ -84,8 +80,11 @@ class ModalWinner extends HTMLElement {
         }
 
         @keyframes popItem{
+          0% {
+            transform: scale(0.1)
+          }
           100% {
-            transform: scale(2)
+            transform: scale(1)
           }
         }
     `;
@@ -117,13 +116,13 @@ class ModalWinner extends HTMLElement {
             <div class="buttons-container">
               <div class="replay">
                 <figure>
-                  <img src="img/pizza-button.png" alt="Image for pizza button">
+                  <img src="../assets/img/pizza-button.png" alt="Image for pizza button">
                 </figure>
                 <span>Play Again</span>
               </div>
               <div class="new">
                 <figure>
-                  <img src="img/pinneaple-button.png" alt="Image for pinneaple button">
+                  <img src="../assets/img/pinneaple-button.png" alt="Image for pinneaple button">
                 </figure>
                 <span>New Game</span>
               </div>
