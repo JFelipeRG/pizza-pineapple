@@ -116,13 +116,13 @@ class ModalWinner extends HTMLElement {
             <div class="buttons-container">
               <div class="replay">
                 <figure>
-                  <img src="../assets/img/pizza-button.png" alt="Image for pizza button">
+                  <img src="/img/pizza-button.png" alt="Image for pizza button">
                 </figure>
                 <span>Play Again</span>
               </div>
               <div class="new">
                 <figure>
-                  <img src="../assets/img/pinneaple-button.png" alt="Image for pinneaple button">
+                  <img src="/img/pinneaple-button.png" alt="Image for pinneaple button">
                 </figure>
                 <span>New Game</span>
               </div>

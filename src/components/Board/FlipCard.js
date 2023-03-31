@@ -56,7 +56,7 @@ class FlipCard extends HTMLElement {
       .front-face, .back-face {
         box-sizing: border-box;
         width: 100%;
-        background: url("../assets/img/pizza.webp");
+        background: url("/img/pizza.webp");
         background-size: contain;
         border: 5px solid #edb544;
         display: flex;
@@ -65,7 +65,7 @@ class FlipCard extends HTMLElement {
       }
 
       .back-face {
-        background: url("../assets/img/pinneaple.webp");
+        background: url("/img/pinneaple.webp");
         border: 5px solid #e5d282;
         transform: rotateY(180deg);
       }
